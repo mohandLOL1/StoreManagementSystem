@@ -1,6 +1,8 @@
 package users;
+import databases.Searchable;
 
-public class EmployeeUser {
+public class EmployeeUser implements Searchable{
+
      private String employeeId, name, email, address, phoneNumber;
    
    public EmployeeUser(String employeeId, String name, String email, String address,String phoneNumber)
@@ -11,10 +13,13 @@ public class EmployeeUser {
        this.address = address;
        this.phoneNumber = phoneNumber;
    }
+
+
    public String lineRepresentation()
    {
        return employeeId + "," + name + "," + email + "," + address + "," + phoneNumber;
    }
+   @Override
    public String getSearchKey()
    {
        return this.employeeId;

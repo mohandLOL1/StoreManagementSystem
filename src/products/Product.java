@@ -1,4 +1,10 @@
 package products;
 
-public class Product {
+import databases.Searchable;
+
+public class Product implements Searchable {
+    @Override
+    public String getSearchKey() {
+        return "";
+    }
 }
