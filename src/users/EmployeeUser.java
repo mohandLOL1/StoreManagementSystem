@@ -1,6 +1,8 @@
 package users;
 
-public class EmployeeUser{
+import databases.Searchable;
+
+public class EmployeeUser implements Searchable {
 
      private String employeeId, name, email, address, phoneNumber;
    

@@ -69,8 +69,8 @@ public class EmployeeUserDatabase extends DataBase<EmployeeUser> {
 
         ArrayList<EmployeeUser> records = returnAllRecords();
 
-        for(int i = 0 ;i<records.size();i++){
-            writer.write(records.get(i).lineRepresentation() + "\n");
+        for (EmployeeUser record : records) {
+            writer.write(record.lineRepresentation() + "\n");
         }
         writer.close();
 

@@ -6,5 +6,11 @@ import java.io.IOException;
 public class mai {
 
     static void main(String[] args) throws IOException {
+        EmployeeUser e1 = new EmployeeUser("5","2","3","4","5");
+        EmployeeUserDatabase db = new EmployeeUserDatabase("Employees.txt");
+
+        db.readFromFile();
+        db.insertRecord(e1);
+        db.saveToFile();
     }
 }
