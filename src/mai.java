@@ -1,22 +1,16 @@
 import databases.EmployeeUserDatabase;
-import roles.AdminRole;
 import users.EmployeeUser;
 
 import java.io.IOException;
 
 public class mai {
 
-   public static void main(String[] args) throws IOException {
+    static void main(String[] args) throws IOException {
+        EmployeeUser e1 = new EmployeeUser("5","2","3","4","5");
+        EmployeeUserDatabase db = new EmployeeUserDatabase("Employees.txt");
 
-       AdminRole a1=new AdminRole();
-
-       a1.addEmployee("  -1","lola","lola","jfff","efefef");
-
-         EmployeeUser[] array=a1.getListOfEmployees();
-       System.out.println(array[0].lineRepresentation());
-       /*AdminRole aa=new AdminRole();
-       aa.removeEmployee("5");
-     */
-
+        db.readFromFile();
+        db.insertRecord(e1);
+        db.saveToFile();
     }
 }
