@@ -1,34 +1,51 @@
 package databases;
 
+
+
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.io.*;
 
 
 public abstract class DataBase<T extends Searchable> {  //makes abstract class that will be used as a blueprint for inheritance
-    @SuppressWarnings("unused")
-    private final String filename;
-    @SuppressWarnings("unused")
-    private ArrayList<T> records;
+
+    private String filename;
+    private final ArrayList<T> records;
 
     public DataBase(String filename) {
-        Path path = Paths.get( filename);
+        this.setFilename(filename);
+        this.records = new ArrayList<>();
+    }
+
+    public void setFilename(String filename) {
+        Path path = Paths.get(filename);
 
         if (!Files.exists(path)) {
             throw new IllegalArgumentException("File not found: " + path.toAbsolutePath());
         }
 
         this.filename = filename;
-        this.records = new ArrayList<>();
     }
-
-
 
     public String getFilename() {
         return filename;
     }
 
-    public abstract void readFromFile() throws IOException;
+    public void readFromFile() throws IOException {
+
+        BufferedReader reader = new BufferedReader(new FileReader(getFilename()));
+        String line;
+        ArrayList<T> records = returnAllRecords();
+        records.clear();
+        while((line = reader.readLine()) != null){
+
+            line = line.trim();
+            if (line.isEmpty()) continue;
+            records.add(createRecordFrom(line));
+        }
+        reader.close();
+        System.out.println("Read from " + this.getFilename() + " Successfully, record size is " + records.size());
+    }
     public abstract T createRecordFrom(String line);
     public ArrayList<T> returnAllRecords(){
         return this.records;
@@ -53,6 +70,7 @@ public abstract class DataBase<T extends Searchable> {  //makes abstract class t
         System.out.println("Couldn't find record, returning null");
         return null;
     }
+
     public void insertRecord(T record){
         ArrayList<T> records = returnAllRecords();
         if(!contains(record.getSearchKey())){
@@ -77,6 +95,17 @@ public abstract class DataBase<T extends Searchable> {  //makes abstract class t
 
         System.out.println("Couldn't find record, failed to remove");
     }
-    @SuppressWarnings("unused")
-    public abstract void saveToFile() throws IOException;
+
+    public void saveToFile() throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(getFilename()));
+
+        ArrayList<T> records = returnAllRecords();
+
+        for (T record : records) {
+            writer.write(record.lineRepresentation() + "\n");
+        }
+        writer.close();
+
+        System.out.println("Changes saved to file successfully");
+    }
 }
