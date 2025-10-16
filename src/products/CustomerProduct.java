@@ -31,21 +31,23 @@ public class CustomerProduct implements Searchable {
      }
      public String lineRepresentation()
      {
-         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yyyy");
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
          return customerSSN + "," + productID + "," + purchaseDate.format(formatter) + "," + paid;
      }
+
      public boolean isPaid()
      {
          return this.paid;
      }
+
      public void setPaid(boolean paid)
      {
          this.paid = paid;
      }
+
      public String getSearchKey()
      {
-         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yyyy");
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
          return customerSSN + "," + productID + "," + purchaseDate.format(formatter);
      }
-
 }

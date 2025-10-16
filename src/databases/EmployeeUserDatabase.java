@@ -13,10 +13,7 @@ public class EmployeeUserDatabase extends DataBase<EmployeeUser> {
 
     @Override
     public EmployeeUser createRecordFrom(String line) {
-
-
         String[] tokens = line.split(",");
-
         if (tokens.length != 5) {
             System.err.println("Malformed line (expected 5 tokens): " + line);
             return null;

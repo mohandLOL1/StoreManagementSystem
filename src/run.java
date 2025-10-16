@@ -3,8 +3,10 @@ import databases.ProductDatabase;
 import users.EmployeeUser;
 import products.Product;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-public class mai {
+public class run {
 
    public static void main(String[] args) throws IOException {
         EmployeeUser e1 = new EmployeeUser("5","2","3","4","5");
@@ -16,7 +18,10 @@ public class mai {
         db.insertRecord(e1);
         db.saveToFile();
 
-        pdb.readFromFile();
+        LocalDate date = LocalDate.of(2025,2,24);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String d = date.format(formatter);
+       System.out.println(d); 
         pdb.insertRecord(p1);
         pdb.saveToFile();
     }

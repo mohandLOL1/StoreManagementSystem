@@ -12,6 +12,7 @@ public class ProductDatabase extends  DataBase<Product> {
 
     @Override
     public Product createRecordFrom(String line) {
+
         String[] tokens = line.split(",");
 
         if (tokens.length != 6) {
