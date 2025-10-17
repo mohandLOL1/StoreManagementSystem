@@ -89,7 +89,7 @@ public boolean applyPayment(String customerSSN, LocalDate purchaseDate){
   return false;
  }
 
-public void logout()throws Exception{
+public void logout(){
  productsDatabase.saveToFile();            
  customerProductDatabase.saveToFile();
  }
