@@ -66,7 +66,7 @@ public double returnProduct(String customerSSN, String productID,LocalDate purch
      if(returnDate.isBefore(purchaseDate))
        return -1;
 
-   String line= new CustomerProduct(customerSSN,productID,purchaseDate,true).lineRepresentation();
+   String line= new CustomerProduct(customerSSN,productID,purchaseDate,true).getSearchKey();
 
    if(!customerProductDatabase.contains(line))
       return -1;
