@@ -16,7 +16,11 @@ public class Product implements Searchable {
         this.quantity = quantity;
         this.supplierName = supplierName;
     }
-    
+
+    public float getPrice() {
+        return price;
+    }
+
     public int getQuantity()
     {
         return this.quantity;
