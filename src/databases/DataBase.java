@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.io.*;
 
 
-public abstract class DataBase<T extends Searchable> {  //makes abstract class that will be used as a blueprint for inheritance
+public abstract class DataBase{  //makes abstract class that will be used as a blueprint for inheritance
 
     private String filename;
-    private final ArrayList<T> records;
+    private final ArrayList<Searchable> records;
 
     public DataBase(String filename) {
         this.setFilename(filename);
@@ -35,7 +35,7 @@ public abstract class DataBase<T extends Searchable> {  //makes abstract class t
 
         BufferedReader reader = new BufferedReader(new FileReader(getFilename()));
         String line;
-        ArrayList<T> records = returnAllRecords();
+        ArrayList<Searchable> records = returnAllRecords();
         records.clear();
         while((line = reader.readLine()) != null){
 
@@ -46,22 +46,22 @@ public abstract class DataBase<T extends Searchable> {  //makes abstract class t
         reader.close();
         System.out.println("Read from " + this.getFilename() + " Successfully, record size is " + records.size());
     }
-    public abstract T createRecordFrom(String line);
-    public ArrayList<T> returnAllRecords(){
+    public abstract Searchable createRecordFrom(String line);
+    public ArrayList<Searchable> returnAllRecords(){
         return this.records;
     }
     public boolean contains(String key){
 
-        ArrayList<T> records = returnAllRecords();
-        for(T record : records){
+        ArrayList<Searchable> records = returnAllRecords();
+        for(Searchable record : records){
             if(record.getSearchKey().equals(key))
                 return true;
         }
         return false;
     }
-    public T getRecord(String key){
-        ArrayList<T> records = returnAllRecords();
-        for(T record : records){
+    public Searchable getRecord(String key){
+        ArrayList<Searchable> records = returnAllRecords();
+        for(Searchable record : records){
             if(record.getSearchKey().equals(key)){
                 return record;
             }
@@ -71,8 +71,8 @@ public abstract class DataBase<T extends Searchable> {  //makes abstract class t
         return null;
     }
 
-    public void insertRecord(T record){
-        ArrayList<T> records = returnAllRecords();
+    public void insertRecord(Searchable record){
+        ArrayList<Searchable> records = returnAllRecords();
         if(!contains(record.getSearchKey())){
            records.add(record);
         }
@@ -83,9 +83,9 @@ public abstract class DataBase<T extends Searchable> {  //makes abstract class t
     }
 
     public void deleteRecord(String key){
-        ArrayList<T> records = returnAllRecords();
+        ArrayList<Searchable> records = returnAllRecords();
 
-        for(T record : records){
+        for(Searchable record : records){
             if(record.getSearchKey().equals(key)){
                 records.remove(record);
                 System.out.println("Removed record from database");
@@ -99,9 +99,9 @@ public abstract class DataBase<T extends Searchable> {  //makes abstract class t
     public void saveToFile() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(getFilename()));
 
-        ArrayList<T> records = returnAllRecords();
+        ArrayList<Searchable> records = returnAllRecords();
 
-        for (T record : records) {
+        for (Searchable record : records) {
             writer.write(record.lineRepresentation() + "\n");
         }
         writer.close();

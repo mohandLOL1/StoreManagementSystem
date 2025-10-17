@@ -5,7 +5,7 @@ import products.Product;
 import java.io.*;
 
 
-public class ProductDatabase extends  DataBase<Product> {
+public class ProductDatabase extends  DataBase{
     public ProductDatabase(String filename) {
         super(filename);
     }

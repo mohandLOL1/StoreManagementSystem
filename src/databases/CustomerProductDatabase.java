@@ -1,19 +1,17 @@
 package databases;
 
 import products.CustomerProduct;
-import users.EmployeeUser;
-
 import java.time.LocalDate;
 
 
-public class CustomerProductDatabase extends DataBase<CustomerProduct> {
+public class CustomerProductDatabase extends DataBase{
     public CustomerProductDatabase(String filename) {
         super(filename);
     }
 
     private static LocalDate stringToLocalDate(String date){
-        String[] tokens = date.split(",");
-        return LocalDate.of(Integer.parseInt(tokens[0]),Integer.parseInt(tokens[1]),Integer.parseInt(tokens[2]));
+        String[] tokens = date.split("-");
+        return LocalDate.of(Integer.parseInt(tokens[2]),Integer.parseInt(tokens[1]),Integer.parseInt(tokens[0]));
     }
 
     @Override
@@ -35,11 +33,5 @@ public class CustomerProductDatabase extends DataBase<CustomerProduct> {
         isPaid = tokens[3];
         return new CustomerProduct(SSN,productID,date,Boolean.parseBoolean(isPaid));
     }
-
-
-
-
-
-
 
 }

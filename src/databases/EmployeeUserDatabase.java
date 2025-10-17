@@ -5,7 +5,7 @@ import users.EmployeeUser;
 
 import java.io.*;
 
-public class EmployeeUserDatabase extends DataBase<EmployeeUser> {
+public class EmployeeUserDatabase extends DataBase{
 
     public EmployeeUserDatabase(String filename) {
         super(filename);

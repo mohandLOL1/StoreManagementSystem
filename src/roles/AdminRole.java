@@ -6,31 +6,23 @@ import java.io.IOException;
 
 public class AdminRole {
 
-    private EmployeeUserDatabase database = new EmployeeUserDatabase("data/Employees.txt") ;
+    private final EmployeeUserDatabase database;
     public AdminRole(){
-
+        this.database = new EmployeeUserDatabase("data/Employees.txt") ;
     }
 
-public  void addEmployee(String employeeId,String name,String email,String address, String phoneNumder) throws IOException {
+public  void addEmployee(String employeeId,String name,String email,String address, String phoneNumber) throws IOException {
 
-     int test =Integer.parseInt(employeeId.trim());
-     if(test>=0){
-    EmployeeUser record=new EmployeeUser(employeeId,name,email,address,phoneNumder);
-    database.insertRecord(record);
-    this.logout();}
-     else {
-         System.out.println("coudn't save record, negative id !!");
-     }
+        EmployeeUser record=new EmployeeUser(employeeId,name,email,address,phoneNumber);
+        database.insertRecord(record);
+        this.logout();
 }
 
 
 
 public  EmployeeUser[] getListOfEmployees(){
-        EmployeeUser[] ListEmployeeUser=database.returnAllRecords().toArray(new EmployeeUser[0]);
-        return ListEmployeeUser;
-
+    return database.returnAllRecords().toArray(new EmployeeUser[0]);
     }
-
 
 
 
@@ -40,12 +32,11 @@ public  EmployeeUser[] getListOfEmployees(){
     }
 
 
-
-
     public void logout(){
 
         try {
             database.saveToFile();
+            System.out.println("Data saved to file successfully!");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
