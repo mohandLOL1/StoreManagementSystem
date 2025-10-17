@@ -7,13 +7,14 @@ import java.io.IOException;
 public class AdminRole {
 
     private final EmployeeUserDatabase database;
-    public AdminRole(){
+    public AdminRole() throws IOException {
         this.database = new EmployeeUserDatabase("data/Employees.txt") ;
+        this.database.readFromFile();
     }
 
 public  void addEmployee(String employeeId,String name,String email,String address, String phoneNumber) throws IOException {
 
-        EmployeeUser record=new EmployeeUser(employeeId,name,email,address,phoneNumber);
+        EmployeeUser record = new EmployeeUser(employeeId,name,email,address,phoneNumber);
         database.insertRecord(record);
         this.logout();
 }
@@ -21,7 +22,8 @@ public  void addEmployee(String employeeId,String name,String email,String addre
 
 
 public  EmployeeUser[] getListOfEmployees(){
-    return database.returnAllRecords().toArray(new EmployeeUser[0]);
+
+       return database.returnAllRecords().toArray(new EmployeeUser[0]);
     }
 
 
