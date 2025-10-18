@@ -14,13 +14,15 @@ public class CustomerProduct implements Searchable {
     {
     this.customerSSN = customerSSN;
     this.productID = productID;
-    this.purchaseDate = purchaseDate;
+    setLocalDate(purchaseDate);
     this.paid = paid;
     }
-     public String getCustomerSSN()
+
+    public String getCustomerSSN()
      {
          return this.customerSSN;
      }
+
      public String getProductID()
      {
          return this.productID;
@@ -29,6 +31,17 @@ public class CustomerProduct implements Searchable {
      {
          return this.purchaseDate;
      }
+
+     private void setLocalDate(LocalDate localDate) {
+        if(LocalDate.now().isBefore(localDate)){
+            System.out.println("Cannot set purchase date in the future, setting it to current day");
+            this.purchaseDate = LocalDate.now();
+        }
+        else{
+            this.purchaseDate = localDate;
+         }
+     }
+
      public String lineRepresentation()
      {
          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");

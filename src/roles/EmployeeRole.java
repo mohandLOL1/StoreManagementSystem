@@ -20,7 +20,7 @@ public class EmployeeRole {
  public EmployeeRole() throws IOException {
 
     productsDatabase = new ProductDatabase("data/Products.txt");
-    customerProductDatabase = new CustomerProductDatabase("data/CustomersProducts.txt");
+    customerProductDatabase = new CustomerProductDatabase("data/CustomerProducts.txt");
     productsDatabase.readFromFile();
     customerProductDatabase.readFromFile();
  }

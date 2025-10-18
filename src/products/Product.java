@@ -13,7 +13,7 @@ public class Product implements Searchable {
         this.manufacturerName = manufacturerName;
         this.price = price;
         this.productName = productName;
-        this.quantity = quantity;
+        this.setQuantity(quantity);
         this.supplierName = supplierName;
     }
 
@@ -27,7 +27,12 @@ public class Product implements Searchable {
     }
     public void setQuantity(int quantity)
     {
-       this.quantity = quantity; 
+        if(quantity >= 0)
+          this.quantity = quantity;
+        else{
+            System.out.println("Invalid quantity, setting it to zero");
+            this.quantity = 0;
+        }
     }
     public String lineRepresentation()
     {

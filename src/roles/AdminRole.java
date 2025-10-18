@@ -13,7 +13,6 @@ public class AdminRole {
     }
 
 public  void addEmployee(String employeeId,String name,String email,String address, String phoneNumber) throws IOException {
-
         EmployeeUser record = new EmployeeUser(employeeId,name,email,address,phoneNumber);
         database.insertRecord(record);
         this.logout();
@@ -21,21 +20,18 @@ public  void addEmployee(String employeeId,String name,String email,String addre
 
 
 
-public  EmployeeUser[] getListOfEmployees(){
-
+    public  EmployeeUser[] getListOfEmployees(){
        return database.returnAllRecords().toArray(new EmployeeUser[0]);
     }
 
-
-
-    public void removeEmployee(String key){
+    public void removeEmployee(String key)
+    {
         database.deleteRecord(key);
         this.logout();
     }
 
 
     public void logout(){
-
         try {
             database.saveToFile();
             System.out.println("Data saved to file successfully!");
