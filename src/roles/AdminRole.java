@@ -13,7 +13,7 @@ public class AdminRole {
     }
 
 public  void addEmployee(String employeeId,String name,String email,String address, String phoneNumber) throws IOException {
-        if(validations.EmailValidator.validate(email) && validations.NameValidator.validate(name) && validations.PhoneValidator(phoneNumber)) {
+        if(validations.EmailValidator.validate(email)) {
             EmployeeUser record = new EmployeeUser(employeeId, name, email, address, phoneNumber);
             database.insertRecord(record);
         }
