@@ -13,9 +13,9 @@ public class AdminRole {
     }
 
 public  void addEmployee(String employeeId,String name,String email,String address, String phoneNumber) throws IOException {
+
         EmployeeUser record = new EmployeeUser(employeeId,name,email,address,phoneNumber);
         database.insertRecord(record);
-        this.logout();
 }
 
 
@@ -27,7 +27,6 @@ public  void addEmployee(String employeeId,String name,String email,String addre
     public void removeEmployee(String key)
     {
         database.deleteRecord(key);
-        this.logout();
     }
 
 

@@ -73,7 +73,7 @@ public abstract class DataBase{  //makes abstract class that will be used as a b
 
     public void insertRecord(Searchable record){
         ArrayList<Searchable> records = returnAllRecords();
-        if(!contains(record.getSearchKey())){
+        if(contains(record.getSearchKey())){
            records.add(record);
         }
         else{

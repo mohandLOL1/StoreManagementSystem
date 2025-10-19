@@ -68,7 +68,7 @@ public double returnProduct(String customerSSN, String productID,LocalDate purch
 
    String line= new CustomerProduct(customerSSN,productID,purchaseDate,true).getSearchKey();
 
-   if(!customerProductDatabase.contains(line))
+   if(customerProductDatabase.contains(line))
       return -1;
 
    Product product = (Product) productsDatabase.getRecord(productID);
