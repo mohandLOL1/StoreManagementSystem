@@ -1,7 +1,7 @@
 package roles;
 import databases.EmployeeUserDatabase;
 import users.EmployeeUser;
-
+import validations.*;
 import java.io.IOException;
 
 public class AdminRole {
@@ -13,9 +13,13 @@ public class AdminRole {
     }
 
 public  void addEmployee(String employeeId,String name,String email,String address, String phoneNumber) throws IOException {
-
-        EmployeeUser record = new EmployeeUser(employeeId,name,email,address,phoneNumber);
-        database.insertRecord(record);
+        if(validations.EmailValidator.validate(email) && validations.NameValidator.validate(name) && validations.PhoneValidator(phoneNumber)) {
+            EmployeeUser record = new EmployeeUser(employeeId, name, email, address, phoneNumber);
+            database.insertRecord(record);
+        }
+        else{
+            System.out.println("Couldn't add employee, invalid credentials");
+        }
 }
 
 

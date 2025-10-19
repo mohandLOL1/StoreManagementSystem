@@ -40,9 +40,7 @@ public class TestClass {
         admin.addEmployee("EMP-001", "Ahmed", "ahmed@email.com", "123 Street Cairo", "+20123456789");
 
         admin.addEmployee("EMP-002", "Mohamed", "mohamed@email.com", "456 Boulevard Giza", "+20198765432");
-
         admin.addEmployee("EMP-003", "Mariam", "mariam@email.com", "789 Avenue Alexandria", "+20145678923");
-
         admin.addEmployee("EMP-004", "Hossam", "hossam@email.com", "101 Lane Luxor", "+20132165498");
         admin.addEmployee("EMP-005", "Nour", "nour@email.com", "202 Drive Aswan", "+20165432178");
 
@@ -55,7 +53,7 @@ public class TestClass {
             return;
         }
         admin.logout();
-        System.out.println("You have passed the tests of admin role.\nHowever, there will be different tests during the discussion.\nMake sure that you have implemented all the requirements correctly");
+        System.out.println("You have passed the tests of admin role.\n");
 
     }
 
@@ -91,22 +89,22 @@ public class TestClass {
         CustomerProduct oP5 = new CustomerProduct(customer3, "SPK-004", LocalDate.of(2023, 5, 20),false);
         result = addPurchaseOperation(oP1);
         if (!result) {
-            System.out.println("Purchase1: it is a valid purchase.\nHowever, your code refuses it. Fix your code!!!");
+            System.out.println("Purchase1: it is a valid purchase.\nHowever, your code refuses it.");
             return;
         }
         result = addPurchaseOperation(oP2);
         if (!result) {
-            System.out.println("Purchase2: it is a valid purchase.\nHowever, your code refuses it. Fix your code!!!");
+            System.out.println("Purchase2: it is a valid purchase.\nHowever, your code refuses it.");
             return;
         }
         result = addPurchaseOperation(oP3);
         if (!result) {
-            System.out.println("Purchase3: it is a valid purchase.\nHowever, your code refuses it. Fix your code!!!");
+            System.out.println("Purchase3: it is a valid purchase.\nHowever, your code refuses it.");
             return;
         }
         result = addPurchaseOperation(oP4);
         if (result) {
-            System.out.println("Purchase4: it is an invalid purchase.\nHowever, your code accepts it. Fix your code!!!");
+            System.out.println("Purchase4: it is an invalid purchase.\nHowever, your code accepts it.");
             return;
         }
         CustomerProduct[] newOperations = employee.getListOfPurchasingOperations();
@@ -122,11 +120,11 @@ public class TestClass {
         result = addPurchaseOperation(oP5);
         
         if (!result) {
-            System.out.println("Purchase5: it is a valid purchase.\nHowever, your code refuses it. Fix your code!!!");
+            System.out.println("Purchase5: it is a valid purchase.\nHowever, your code refuses it. Fix your code");
             return;
         }        
         employee.logout();
-        System.out.println("You have passed the tests of employee role.\nHowever, there will be different tests during the discussion.\nMake sure that you have implemented all the requirements correctly");
+        System.out.println("You have passed the tests of employee role.");
     }
 
     public static void main(String[] args) throws IOException {

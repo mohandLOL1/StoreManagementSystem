@@ -11,7 +11,13 @@ public class Product implements Searchable {
     {
         this.productID = productID;
         this.manufacturerName = manufacturerName;
-        this.price = price;
+
+        if(price > 0)
+            this.price = price;
+        else{
+            this.price = 0;
+        }
+
         this.productName = productName;
         this.setQuantity(quantity);
         this.supplierName = supplierName;
