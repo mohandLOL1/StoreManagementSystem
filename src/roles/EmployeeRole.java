@@ -60,8 +60,6 @@ public CustomerProduct[] getListOfPurchasingOperations(){
 
           customerProductDatabase.insertRecord(purchaseProduct);
 
-          customerProductDatabase.saveToFile();
-          productsDatabase.saveToFile();
           return true;
         }
 
