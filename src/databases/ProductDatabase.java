@@ -30,8 +30,8 @@ public class ProductDatabase extends  DataBase{
         ID = tokens[0];
         name = tokens[1];
         manufacturer =tokens[2];
-        quantity = tokens[3];
-        supplier = tokens[4];
+        quantity = tokens[4];
+        supplier = tokens[3];
         price = tokens[5];
 
         return new Product(ID, name, manufacturer, supplier,Integer.parseInt(quantity), Float.parseFloat(price));

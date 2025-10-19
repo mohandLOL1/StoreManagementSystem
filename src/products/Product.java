@@ -6,7 +6,7 @@ public class Product implements Searchable {
     private String productID, productName, manufacturerName,supplierName;
     private int quantity;
     private float price;
-    
+    private final float defaultPrice = 100;
     public Product(String productID, String productName, String manufacturerName, String supplierName, int quantity, float price)
     {
         this.productID = productID;
@@ -15,7 +15,7 @@ public class Product implements Searchable {
         if(price > 0)
             this.price = price;
         else{
-            this.price = 0;
+            this.price = defaultPrice;
         }
 
         this.productName = productName;

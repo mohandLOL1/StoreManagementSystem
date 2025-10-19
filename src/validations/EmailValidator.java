@@ -24,6 +24,7 @@ public class EmailValidator{
             }
 
         }
+        System.out.println("email bad");
         return false;
     
     }

@@ -27,7 +27,11 @@ public class EmployeeRole {
 public void addProduct(String productID, String productName, String manufacturerName, String supplierName, int quantity, float price) throws IOException {
  Product addProduct=new Product(productID , productName ,manufacturerName ,supplierName,quantity,price);
  productsDatabase.insertRecord(addProduct);
- productsDatabase.saveToFile();
+ }
+ public void addProduct(String productID, String productName, String manufacturerName, String supplierName, int quantity){
+
+     Product addProduct=new Product(productID , productName ,manufacturerName ,supplierName,quantity,0);
+     productsDatabase.insertRecord(addProduct);
  }
  
 public Product[] getListOfProducts(){
@@ -37,29 +41,30 @@ public CustomerProduct[] getListOfPurchasingOperations(){
      return customerProductDatabase.returnAllRecords().toArray(new CustomerProduct[0]);
  } 
  
-public boolean purchaseProduct(String customerSSN, String productID, LocalDate purchaseDate) throws IOException {
-  Product product = (Product) productsDatabase.getRecord(productID);
+ public boolean purchaseProduct(String customerSSN, String productID, LocalDate purchaseDate) throws IOException {
+          Product product = (Product) productsDatabase.getRecord(productID);
 
-  if(product == null) {
-      System.out.println("Cannot purchase null product");
-      return false;
-  }
+          if(product == null) {
+              System.out.println("Cannot purchase null product");
+              return false;
+          }
 
-  if(product.getQuantity()<=0) {
-      System.out.println("Product is out of stock, cannot purchase");
-      return false;
-  }
+          if(product.getQuantity()<=0) {
+              System.out.println("Product is out of stock, cannot purchase");
+              return false;
+          }
 
-  product.setQuantity(product.getQuantity()-1);
+          product.setQuantity(product.getQuantity()-1);
 
-  CustomerProduct purchaseProduct=new CustomerProduct(customerSSN,productID,purchaseDate,true);
+          CustomerProduct purchaseProduct=new CustomerProduct(customerSSN,productID,purchaseDate,true);
 
-  customerProductDatabase.insertRecord(purchaseProduct);
-  productsDatabase.saveToFile();
-  customerProductDatabase.saveToFile();
-  return true;
-}
- 
+          customerProductDatabase.insertRecord(purchaseProduct);
+
+          customerProductDatabase.saveToFile();
+          productsDatabase.saveToFile();
+          return true;
+        }
+
 public double returnProduct(String customerSSN, String productID,LocalDate purchaseDate ,LocalDate returnDate) throws IOException {
 
      if(returnDate.isBefore(purchaseDate))
@@ -67,7 +72,7 @@ public double returnProduct(String customerSSN, String productID,LocalDate purch
 
    String line= new CustomerProduct(customerSSN,productID,purchaseDate,true).getSearchKey();
 
-   if(customerProductDatabase.contains(line))
+   if(!customerProductDatabase.contains(line))
       return -1;
 
    Product product = (Product) productsDatabase.getRecord(productID);
@@ -81,9 +86,6 @@ public double returnProduct(String customerSSN, String productID,LocalDate purch
 
    product.setQuantity(product.getQuantity()+1);
    customerProductDatabase.deleteRecord(line);
-   customerProductDatabase.saveToFile();
-   productsDatabase.saveToFile();
-
    return product.getPrice();
   }
 

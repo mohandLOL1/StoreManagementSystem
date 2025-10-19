@@ -32,13 +32,14 @@ public class TestClass {
         admin = new AdminRole();
 
         employees = admin.getListOfEmployees();
+
         if (employees.length != 0) {
             System.out.println("There is a problem in removing old employees from the employees file or arraylist");
             return;
         }
 
-        admin.addEmployee("EMP-001", "Ahmed", "ahmed@email.com", "123 Street Cairo", "+20123456789");
 
+        admin.addEmployee("EMP-001", "Ahmed", "ahmed@email.com", "123 Street Cairo", "+20123456789");
         admin.addEmployee("EMP-002", "Mohamed", "mohamed@email.com", "456 Boulevard Giza", "+20198765432");
         admin.addEmployee("EMP-003", "Mariam", "mariam@email.com", "789 Avenue Alexandria", "+20145678923");
         admin.addEmployee("EMP-004", "Hossam", "hossam@email.com", "101 Lane Luxor", "+20132165498");
@@ -53,7 +54,7 @@ public class TestClass {
             return;
         }
         admin.logout();
-        System.out.println("You have passed the tests of admin role.\n");
+        System.out.println("Passed 1\n");
 
     }
 
@@ -65,7 +66,7 @@ public class TestClass {
 
     public void testEmployeeRole() throws IOException {
         Product[] oldProducts = employee.getListOfProducts();
-        
+
         employee.addProduct("LPT-001", "MacBook Pro 16-inch", "Apple", "BestBuy", 2, 5000);
         employee.addProduct("SMT-002", "Samsung Galaxy S22", "Samsung", "Amazon", 3, 1200);
         employee.addProduct("GMC-003", "PlayStation 5", "Sony", "GameStop", 4, 500);
@@ -112,6 +113,7 @@ public class TestClass {
             System.out.println("There is a problem in adding new operations to the customers products file or arraylist");
             return;
         }
+
         double returnValue=employee.returnProduct(oP3.getCustomerSSN(), oP3.getProductID(), oP3.getPurchaseDate(), LocalDate.of(2023, 5, 17));
         if(returnValue != newProducts[oldProducts.length+3].getPrice()){
             System.out.println("There is a problem in returning the products");
@@ -124,7 +126,7 @@ public class TestClass {
             return;
         }        
         employee.logout();
-        System.out.println("You have passed the tests of employee role.");
+        System.out.println("Passed 2");
     }
 
     public static void main(String[] args) throws IOException {

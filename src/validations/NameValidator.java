@@ -10,7 +10,8 @@ public static boolean validate(String Name){
   char[]name=Name.toCharArray();
      
   for(int i=0;i<Name.length();i++){
-     if(!Character.isLetter(name[i]))   
+     if(!Character.isLetter(name[i]))
+         System.out.println("name bad");
         return false;}
   
      return true;

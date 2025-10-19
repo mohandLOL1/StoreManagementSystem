@@ -13,9 +13,10 @@ public class AdminRole {
     }
 
 public  void addEmployee(String employeeId,String name,String email,String address, String phoneNumber) throws IOException {
-        if(validations.EmailValidator.validate(email)) {
+        if(validations.EmailValidator.validate(email) && validations.PhoneValidator.validate(phoneNumber)) {
             EmployeeUser record = new EmployeeUser(employeeId, name, email, address, phoneNumber);
             database.insertRecord(record);
+
         }
         else{
             System.out.println("Couldn't add employee, invalid credentials");
