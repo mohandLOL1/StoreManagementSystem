@@ -89,8 +89,7 @@ public double returnProduct(String customerSSN, String productID,LocalDate purch
   }
 
 public boolean applyPayment(String customerSSN, LocalDate purchaseDate) throws IOException {
-
-  DateTimeFormatter Date1=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+ 
   ArrayList<Searchable> list= customerProductDatabase.returnAllRecords();
 
     for (Searchable searchable : list) {
@@ -121,4 +120,5 @@ public void logout() throws IOException {
  }
 }
  
+
 
